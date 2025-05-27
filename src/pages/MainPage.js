@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../features/header/Header';
 import MoodImage from '../features/moodImage/MoodImage';
 import DailyNote from '../features/dailyNote/DailyNote';
+import WeatherWidget from '../features/weather/WeatherWidget';
 
 export default function MainPage() {
   return (
@@ -11,7 +12,7 @@ export default function MainPage() {
         <h2>Willkommen in deinem Dashboard</h2>
         <MoodImage />
         <DailyNote />
-        {/* hier kommen deine anderen Features */}
+        <WeatherWidget />
       </main>
     </div>
   );
