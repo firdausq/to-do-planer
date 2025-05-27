@@ -3,6 +3,7 @@ import Header from '../features/header/Header';
 import MoodImage from '../features/moodImage/MoodImage';
 import DailyNote from '../features/dailyNote/DailyNote';
 import WeatherWidget from '../features/weather/WeatherWidget';
+import CalendarWidget from '../features/calendar/CalendarWidget';
 
 export default function MainPage() {
   return (
@@ -13,6 +14,7 @@ export default function MainPage() {
         <MoodImage />
         <DailyNote />
         <WeatherWidget />
+        <CalendarWidget />
       </main>
     </div>
   );

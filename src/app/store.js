@@ -3,6 +3,7 @@ import headerReducer from '../features/header/headerSlice';
 import moodReducer   from '../features/moodImage/moodSlice';
 import dailyNoteReducer from '../features/dailyNote/dailyNoteSlice';
 import weatherReducer from '../features/weather/weatherSlice';
+import calendarReducer from '../features/calendar/calendarSlice';
 
 // Lege hier erstmal einen „leeren“ Reducer an
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     mood:   moodReducer,
     dailyNote: dailyNoteReducer,
     weather: weatherReducer,
+    calendar:  calendarReducer,
    }
 });
 
