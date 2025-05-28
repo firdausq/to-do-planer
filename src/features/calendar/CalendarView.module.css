@@ -6,7 +6,6 @@
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   margin-bottom: var(--spacing-md);
-  max-width: 350px;
 }
 
 .events {

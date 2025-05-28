@@ -3,7 +3,6 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
-  max-width: 400px;
   margin-bottom: var(--spacing-md);
 }
 

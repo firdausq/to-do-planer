@@ -3,7 +3,7 @@ import Calendar from 'react-calendar'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSelectedDate, removeEvent } from './calendarSlice'  // removeEvent importieren
 import 'react-calendar/dist/Calendar.css'
-import styles from './CalendarWidget.module.css'
+import styles from './CalendarView.module.css'
 import { format } from 'date-fns'
 import AddEventForm from './AddEventForm'
 

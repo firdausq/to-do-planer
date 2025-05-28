@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setNoteForDate } from './notesSlice'
-import styles from './Notes.module.css'
+import styles from './NotesPanel.module.css'
 
 export default function NotesPanel() {
   const dispatch = useDispatch()

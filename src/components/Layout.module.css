@@ -1,0 +1,21 @@
+.page {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.main {
+  display: grid;
+  grid-template-areas:
+    "mood weather"
+    "mood note"
+    "calendar calendar"
+    "todos todos"
+    "notes notes";
+  grid-template-columns: 2fr 1fr;
+  grid-gap: var(--spacing-md);
+  flex: 1;
+  padding: var(--spacing-md);
+}

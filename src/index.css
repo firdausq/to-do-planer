@@ -1,10 +1,10 @@
 :root {
   /* Farben */
-  --color-primary: #0052cc;
-  --color-secondary: #ffab00;
-  --color-background: #ffffff;
-  --color-surface: #f5f5f5;
-  --color-text-primary: #212121;
+  --color-primary: #6282af;
+  --color-secondary: #f8e4bd;
+  --color-background: #fffff8;
+  --color-surface: #ffe4ab;
+  --color-text-primary: #1e1e4d;
   --color-text-secondary: #727272;
   --color-border: #e0e0e0;
   --color-button-bg: var(--color-primary);
