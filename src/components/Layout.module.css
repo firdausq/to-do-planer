@@ -3,7 +3,7 @@
   background-color: var(--color-background);
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 3rem;
 }
 
 .main {
@@ -17,5 +17,5 @@
   grid-template-columns: 2fr 1fr;
   grid-gap: var(--spacing-md);
   flex: 1;
-  padding: var(--spacing-md);
+  padding-top: var(--spacing-md);
 }

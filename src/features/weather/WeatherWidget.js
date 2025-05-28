@@ -38,7 +38,7 @@ const codeDescriptions = {
 
 export default function WeatherWidget() {
   const dispatch    = useDispatch()
-  const { current, isLoading, error } = useSelector((state) => state.weather)
+  const { current, forecast, isLoading, error } = useSelector((state) => state.weather)
 
   useEffect(() => {
     dispatch(fetchWeather())
@@ -57,6 +57,22 @@ export default function WeatherWidget() {
         <span className={styles.temp}>{temperature}°C</span>
         <span className={styles.desc}>{description}</span>
       </div>
+
+        <div className={styles.forecast}>
+        {forecast.map(day => (
+          <div key={day.date} className={styles.day}>
+            <span className={styles.dayLabel}>
+              {new Date(day.date).toLocaleDateString('de-DE', { weekday: 'short' })}
+            </span>
+            {/* Hier später dein custom Image via day.weathercode */}
+            <span className={styles.tempSmall}>
+              {day.temp_max}° / {day.temp_min}°
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
+
+    
   )
 }
