@@ -2,30 +2,65 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   padding: var(--spacing-md);
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
+.titleContainer,
+.titleEditor {
+  display: flex;
+  align-items: center;
+}
+
 .title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-xxl);
   font-weight: bold;
   color: var(--color-text-primary);
 }
 
-.themeButton {
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--color-button-bg);
-  color: var(--color-button-text);
-  border: none;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  font-size: var(--font-size-base);
-  transition: background-color 0.2s ease;
+.titleInput {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  width: 12rem;
 }
 
-.themeButton:hover {
+.iconButton {
+  background: none;
+  border: none;
+  padding: var(--spacing-sm);
+  margin-left: var(--spacing-sm);
+  cursor: pointer;
+  color: currentColor;
+}
+
+.themeToggle {
+  /* Größe & Form */
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  
+  /* Hintergrund je nach Theme-Variable */
+  background-color: var(--color-primary);
+  color: var(--color-button-text); /* Icon-Farbe */
+
+  /* Optische Feinheiten */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.themeToggle:hover {
   filter: brightness(1.1);
+  transform: scale(1.05);
 }
