@@ -1,34 +1,51 @@
-import React from 'react'
+// src/features/dailyNote/DailyNote.js
+import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setNoteForToday } from './dailyNoteSlice'
+import { setNoteForDate } from './dailyNoteSlice'
 import styles from './DailyNote.module.css'
-import { format } from 'date-fns'
 
 const MAX_LEN = 300
 
 export default function DailyNote() {
   const dispatch = useDispatch()
-  const today    = format(new Date(), 'yyyy-MM-dd')
-  const note     = useSelector((state) => state.dailyNote.notesByDate[today] || '')
+  const dateKey  = useSelector(state => state.calendar.selectedDate) 
+  const saved    = useSelector(state => state.dailyNote.notesByDate[dateKey] || '')
+  const [value, setValue] = useState(saved)
+  const textareaRef = useRef(null)
 
-  const onChange = (e) => {
-    // Slice notwenidig? Browser verhindert bereits längere Eingabe
-    dispatch(setNoteForToday(e.target.value))
+  // wenn sich Datum oder gespeicherte Notiz ändern, lokal mitschreiben
+  useEffect(() => {
+    setValue(saved)
+  }, [saved, dateKey])
+
+  // Auto-Grow: Höhe an ScrollHeight anpassen
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'
+    }
+  }, [value])
+
+  const onChange = e => {
+    const text = e.target.value
+    if (text.length <= MAX_LEN) {
+      setValue(text)
+      dispatch(setNoteForDate({ date: dateKey, text }))
+    }
   }
 
   return (
     <div className={styles.container}>
-      <h3>Tagesnotiz ({today})</h3>
+      <h3 className={styles.title}>Meine tägliche Notiz</h3>
       <textarea
+        ref={textareaRef}
         className={styles.textarea}
-        rows={4}
-        value={note}
+        value={value}
         onChange={onChange}
-        maxLength={MAX_LEN}
-        placeholder="Schreibe hier deine Notiz für heute…"
+        placeholder="Schreibe hier deine Notiz…"
       />
       <div className={styles.counter}>
-        {note.length} / {MAX_LEN}
+        {value.length} / {MAX_LEN}
       </div>
     </div>
   )

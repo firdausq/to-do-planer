@@ -11,9 +11,8 @@
   grid-template-areas:
     "mood weather"
     "mood note"
-    "calendar calendar"
-    "todos todos"
-    "notes notes";
+    "calendar todos"
+    "calendar notes";
   grid-template-columns: 2fr 1fr;
   grid-gap: var(--spacing-md);
   flex: 1;
