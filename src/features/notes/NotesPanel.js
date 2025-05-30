@@ -13,7 +13,7 @@ export default function NotesPanel() {
 
   return (
     <div className={styles.container}>
-      <h3>Notizen für {dateKey}</h3>
+      <h3>Notizen</h3>
       <textarea
         className={styles.textarea}
         rows={8}
