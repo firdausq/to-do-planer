@@ -1,57 +1,85 @@
 .wrapper {
   display: flex;
-  flex-direction: column;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
+  gap: var(--spacing-md);
   margin-bottom: var(--spacing-md);
 }
 
-.events {
-  margin-top: var(--spacing-md);
+.calendarContainer {
+  flex: 3;
+  min-width: 350px;
 }
 
-.events h3 {
-  margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-base);
-  color: var(--color-text-primary);
-}
-
-.events ul {
-  list-style: none;
-  padding: 0;
-}
-
-.events li {
-  padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.eventList {
-  list-style: none;
-  padding: 0;
-}
-
-.eventItem {
+.eventsContainer {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--color-border);
+  flex-direction: column;
 }
 
-.deleteButton {
+/* Kalender-Card selbst (übersetzt auf .react-calendar) */
+.calendarContainer :global(.react-calendar) {
+  width: 100%;
+  max-width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  font-family: inherit;
+}
+
+
+/* Navigation (Monat + Pfeile) */
+.calendarContainer :global(.react-calendar__navigation) {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
   background: transparent;
   border: none;
-  color: var(--color-text-secondary);
-  font-size: 1rem;
-  cursor: pointer;
-  padding: var(--spacing-sm);
-  border-radius: var(--radius-sm);
-  transition: background-color 0.2s ease;
 }
 
-.deleteButton:hover {
-  background-color: var(--color-border);
+/* Wochentage-Header */
+.calendarContainer :global(.react-calendar__month-view__weekdays) {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Jede Wochentag-Zelle */
+.calendarContainer :global(.react-calendar__month-view__weekdays__weekday) {
+  background: white;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+/* Tage-Grid */
+.calendarContainer :global(.react-calendar__month-view__days) {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-sm);
+}
+
+/* Jede Tag-Zelle */
+.calendarContainer :global(.react-calendar__tile) {
+  background: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) 0;
+  text-align: center;
+  color: var(--color-text-primary);
+  transition: background-color 0.2s;
+}
+
+/* Hover-Effekt */
+.calendarContainer :global(.react-calendar__tile:hover) {
+  background-color: var(--color-surface);
+}
+
+/* Ausgewählter Tag */
+.calendarContainer :global(.react-calendar__tile--active) {
+  background: var(--color-primary);
+  color: var(--color-button-text);
 }
