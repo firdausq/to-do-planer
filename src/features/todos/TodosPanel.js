@@ -18,7 +18,7 @@ export default function TodosPanel() {
 
   return (
     <div className={styles.container}>
-      <h3>To-Dos für {dateKey}</h3>
+      <h3>To-Dos:</h3>
       <form onSubmit={onAdd} className={styles.form}>
         <input
           className={styles.input}

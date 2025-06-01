@@ -14,7 +14,7 @@ const headerSlice = createSlice({
     },
     cycleTheme(state) {
       // schlägt Themes im Array aufeinander um
-      const themes = ['light', 'dark', 'blue', 'pink']
+      const themes = ['light', 'dark']
       const idx = themes.indexOf(state.theme)
       state.theme = themes[(idx + 1) % themes.length]
     },

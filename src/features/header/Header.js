@@ -60,7 +60,7 @@ export default function Header() {
       <button
         className={styles.themeToggle}
         onClick={() => {
-          const themes = ['light', 'dark', 'blue', 'pink']
+          const themes = ['light', 'dark']
           const next = themes[(themes.indexOf(theme) + 1) % themes.length]
           document.documentElement.setAttribute('data-theme', next)
           dispatch(cycleTheme())
