@@ -1,3 +1,5 @@
+/* src/components/Layout.module.css */
+
 .page {
   min-height: 100vh;
   background-color: var(--color-background);
@@ -9,11 +11,22 @@
 .main {
   display: grid;
   grid-template-areas:
-    "mood weather"
-    "mood note"
+    "mood    weather"
+    "mood    note"
     "calendar todos"
     "calendar notes";
   grid-template-columns: 2fr 1fr;
+  grid-gap: var(--spacing-md);
+  flex: 1;
+  padding-top: var(--spacing-md);
+
+  /* WICHTIG: vier Zeilen, 
+     Zeile 1 = 1fr (flexibler Platz für Weather), 
+     Zeile 2 = auto (DailyNote passt sich an Content-Höhe an), 
+     Zeile 3 = 1fr (Calendar & Todos teilen nächsten freien Platz),
+     Zeile 4 = 1fr (Calendar & Notes teilen ebenfalls) */
+  grid-template-rows: 1fr auto 1fr 1fr;
+
   grid-gap: var(--spacing-md);
   flex: 1;
   padding-top: var(--spacing-md);

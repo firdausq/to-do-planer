@@ -1,4 +1,3 @@
-// src/features/weather/WeatherWidget.js
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchWeather } from './weatherSlice'
@@ -37,11 +36,32 @@ const codeDescriptions = {
 }
 
 export default function WeatherWidget() {
-  const dispatch    = useDispatch()
-  const { current, forecast, isLoading, error } = useSelector((state) => state.weather)
+  const dispatch = useDispatch()
+  const { current, forecast, isLoading, error } = useSelector(
+    (state) => state.weather
+  )
 
   useEffect(() => {
-    dispatch(fetchWeather())
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords
+          // Mit gefundenen Koordinaten fetchWeather aufrufen
+          dispatch(fetchWeather({ lat: latitude, lon: longitude }))
+        },
+        (geoError) => {
+          // Fallback: Standard-Koordinaten aus .env
+          console.warn(
+            'Geolocation nicht verfügbar oder verweigert, verwende Standard-Koordinaten.',
+            geoError
+          )
+          dispatch(fetchWeather())
+        }
+      )
+    } else {
+      console.warn('Browser unterstützt keine Geolocation-API, verwende Standard-Koordinaten.')
+      dispatch(fetchWeather())
+    }
   }, [dispatch])
 
   if (isLoading) return <p>Lädt Wetter…</p>
@@ -58,8 +78,8 @@ export default function WeatherWidget() {
         <span className={styles.desc}>{description}</span>
       </div>
 
-        <div className={styles.forecast}>
-        {forecast.map(day => (
+      <div className={styles.forecast}>
+        {forecast.map((day) => (
           <div key={day.date} className={styles.day}>
             <span className={styles.dayLabel}>
               {new Date(day.date).toLocaleDateString('de-DE', { weekday: 'short' })}
@@ -72,7 +92,5 @@ export default function WeatherWidget() {
         ))}
       </div>
     </div>
-
-    
   )
 }

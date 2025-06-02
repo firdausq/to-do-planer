@@ -17,6 +17,7 @@
 
 .textarea {
   width: 100%;
+    max-height: calc(1.5em * 5);
   background: transparent;  /* kein Hintergrund */
   border: none;            /* kein Rahmen */
   border-radius: var(--radius-sm);

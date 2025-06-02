@@ -5,16 +5,20 @@ const LAT = process.env.REACT_APP_DEFAULT_LAT
 const LON = process.env.REACT_APP_DEFAULT_LON
 
 // Async-Thunk für aktuelles Wetter + 5-Tage-Forecast
+// Akzeptiert nun optional ein Objekt { lat, lon }, ansonsten werden LAT/LON aus .env verwendet.
 export const fetchWeather = createAsyncThunk(
   'weather/fetchCurrent',
-  async (_, { rejectWithValue }) => {
+  async (
+    { lat = LAT, lon = LON } = {},    // default-Werte, falls kein Argument
+    { rejectWithValue }
+  ) => {
     try {
       const { data } = await axios.get(
         'https://api.open-meteo.com/v1/forecast',
         {
           params: {
-            latitude:        LAT,
-            longitude:       LON,
+            latitude:        lat,
+            longitude:       lon,
             current_weather: true,
             daily:           'weathercode,temperature_2m_max,temperature_2m_min',
             timezone:        'Europe/Berlin'
@@ -28,7 +32,7 @@ export const fetchWeather = createAsyncThunk(
         weathercode: data.current_weather.weathercode
       }
 
-      // Forecast-Liste bauen
+      // Forecast-Liste bauen (heute + kommende Tage)
       const forecast = data.daily.time.map((date, i) => ({
         date,
         weathercode: data.daily.weathercode[i],
@@ -47,7 +51,7 @@ const weatherSlice = createSlice({
   name: 'weather',
   initialState: {
     current:   null,   // { temperature, weathercode }
-    forecast:  [],     // Array der nächsten Tage
+    forecast:  [],     // Array der nächsten Tage (inkl. heute)
     isLoading: false,
     error:     null
   },
@@ -61,7 +65,7 @@ const weatherSlice = createSlice({
       .addCase(fetchWeather.fulfilled, (state, action) => {
         state.isLoading = false
         state.current   = action.payload.current
-        // Nur die nächsten 5 Tage (slice(1,6) überspringt heute)
+        // Nur die nächsten 5 Tage anzeigen (slice(1,6) überspringt heute)
         state.forecast  = action.payload.forecast.slice(1, 6)
       })
       .addCase(fetchWeather.rejected, (state, action) => {

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setNoteForDate } from './dailyNoteSlice'
 import styles from './DailyNote.module.css'
 
-const MAX_LEN = 300
+const MAX_LEN = 150
 
 export default function DailyNote() {
   const dispatch = useDispatch()
