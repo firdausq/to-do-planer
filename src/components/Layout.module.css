@@ -1,5 +1,6 @@
 /* src/components/Layout.module.css */
 
+/* Seite als Ganzes */
 .page {
   min-height: 100vh;
   background-color: var(--color-background);
@@ -8,26 +9,38 @@
   padding: 3rem;
 }
 
+/* Hauptbereich als Grid */
 .main {
   display: grid;
+  /* exakt drei Zeilen, kein "..." mehr! */
   grid-template-areas:
     "mood    weather"
     "mood    note"
-    "calendar todos"
-    "calendar notes";
+    "calendar rightColumn";
+
+  /* drei Zeilenhöhen – die letzte Zeile („calendar + rightColumn“) soll sich ausdehnen */
+  grid-template-rows: 1fr auto auto ;
+
+  /* Spaltenverhältnis: Kalender (= linke Spalte) doppelt so breit wie rechte Spalte */
   grid-template-columns: 2fr 1fr;
-  grid-gap: var(--spacing-md);
+
+  gap: var(--spacing-md);
   flex: 1;
   padding-top: var(--spacing-md);
+}
 
-  /* WICHTIG: vier Zeilen, 
-     Zeile 1 = 1fr (flexibler Platz für Weather), 
-     Zeile 2 = auto (DailyNote passt sich an Content-Höhe an), 
-     Zeile 3 = 1fr (Calendar & Todos teilen nächsten freien Platz),
-     Zeile 4 = 1fr (Calendar & Notes teilen ebenfalls) */
-  grid-template-rows: 1fr auto 1fr 1fr;
+/* Wenn das Kind das Grid-Area rightColumn hat, bekommt es Flex-Verhalten */
+.main > [style*="grid-area: rightColumn"] {
+  display: flex;
+  flex-direction: column;
+}
 
-  grid-gap: var(--spacing-md);
+/* Innerer Container, der Todos + Notes stacked */
+.rightStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+
+  /* Damit sich .rightStack auf die volle Höhe der 1fr-Zeile dehnt */
   flex: 1;
-  padding-top: var(--spacing-md);
 }

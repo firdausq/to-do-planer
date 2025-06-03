@@ -10,7 +10,7 @@
 }
 
 .events {
-  width: 450px;
+  width: 25rem;
   margin-top: var(--spacing-md);
 }
 
@@ -59,7 +59,6 @@
 }
 
 .calendar{
-  width: 450px;
   height: auto;
   display: flex;
   flex-direction: column;
