@@ -69,8 +69,37 @@
 .icon {
   color: var(--color-text-primary);
   margin-bottom: var(--spacing-xs);
+  width: 5rem;
+  height: 5rem;
 }
 
 .iconSmall {
   color: var(--color-text-primary);
+}
+
+
+@media (max-width: 576px), (max-width: 1000px) {
+.container {
+  padding: var(--spacing-sm);
+  height: auto;
+  width: 100%;
+}
+
+ .forecast {
+  display: none;
+ }
+
+ .icon {
+  width: 3rem;
+  height: 3rem;
+ }
+ .temp {
+  display: block;
+ }
+}
+
+@media (max-width: 1400px) {
+  .iconSmall {
+    display: none;
+  }
 }

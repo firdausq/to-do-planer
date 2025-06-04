@@ -114,7 +114,7 @@ export default function WeatherWidget() {
     <div className={styles.container}>
       <div className={styles.info}>
         {/* Aktuelles Wetter-Icon */}
-        <Icon size={100} className={styles.icon} />
+        <Icon className={styles.icon} />
 
         <div>
           <span className={styles.temp}>{temperature}°C</span>

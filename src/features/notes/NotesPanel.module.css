@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-    align-items: center;
+  align-items: center;
 }
 
 .textarea {
@@ -28,4 +28,12 @@
 .textarea:focus {
   outline: none;
   box-shadow: none;
+}
+
+@media (max-width: 576px), (max-width: 1000px) {
+  .container {
+    width: auto;
+    box-sizing: border-box;
+    height: 100%;
+  }
 }

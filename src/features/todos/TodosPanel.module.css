@@ -16,6 +16,7 @@
   padding: var(--spacing-sm);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  min-width: 10%;
 }
 
 .addButton {
@@ -53,4 +54,10 @@
   border: none;
   cursor: pointer;
   color: var(--color-text-secondary);
+}
+
+@media (max-width: 576px), (max-width: 1000px) {
+  .container {
+    width: 40%;
+  }
 }
