@@ -3,7 +3,45 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchWeather } from './weatherSlice'
 import styles from './WeatherWidget.module.css'
 
-// Mapping von Open-Meteo weathercode → Text
+// Icons aus lucide-react importieren
+import {
+  Sun,
+  CloudSun,
+  Cloud,
+  CloudFog,
+  CloudDrizzle,
+  CloudHail,
+  CloudRain,
+  CloudLightning,
+  Snowflake
+} from 'lucide-react'
+
+// Mapping von Open-Meteo weathercode → Icon-Komponente
+const codeToIcon = {
+  0:  Sun,              // Klarer Himmel
+  1:  Sun,              // Hauptsächlich klar
+  2:  CloudSun,         // Teilweise bewölkt
+  3:  Cloud,            // Bewölkt
+  45: CloudFog,         // Nebel
+  48: CloudFog,         // Reifnebel
+  51: CloudFog,         // Leichter Sprühnebel
+  53: CloudFog,         // Mäßiger Sprühnebel
+  55: CloudFog,         // Dichter Sprühnebel
+  61: CloudDrizzle,     // Leichter Regen
+  63: CloudRain,        // Mäßiger Regen
+  65: CloudRain,        // Starker Regen
+  71: Snowflake,        // Leichter Schneefall
+  73: Snowflake,        // Mäßiger Schneefall
+  75: Snowflake,        // Starker Schneefall
+  80: CloudRain,        // Leichte Regenschauer
+  81: CloudRain,        // Mäßige Regenschauer
+  82: CloudRain,        // Heftige Regenschauer
+  95: CloudLightning,   // Gewitter
+  96: CloudHail,        // Gewitter: Leichter Hagel
+  99: CloudHail         // Gewitter: Starker Hagel
+}
+
+// Mapping von Open-Meteo weathercode → Textbeschreibung
 const codeDescriptions = {
   0:  'Klarer Himmel',
   1:  'Hauptsächlich klar',
@@ -31,8 +69,8 @@ const codeDescriptions = {
   85: 'Leichte Schneeschauer',
   86: 'Starke Schneeschauer',
   95: 'Gewitter',
-  96: 'Gewitter: leichter Hagel',
-  99: 'Gewitter: starker Hagel'
+  96: 'Gewitter: Leichter Hagel',
+  99: 'Gewitter: Starker Hagel'
 }
 
 export default function WeatherWidget() {
@@ -46,11 +84,9 @@ export default function WeatherWidget() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords
-          // Mit gefundenen Koordinaten fetchWeather aufrufen
           dispatch(fetchWeather({ lat: latitude, lon: longitude }))
         },
         (geoError) => {
-          // Fallback: Standard-Koordinaten aus .env
           console.warn(
             'Geolocation nicht verfügbar oder verweigert, verwende Standard-Koordinaten.',
             geoError
@@ -71,25 +107,36 @@ export default function WeatherWidget() {
   const { temperature, weathercode } = current
   const description = codeDescriptions[weathercode] || 'Unbekannt'
 
+  // Icon-Komponente für das aktuelle Wetter
+  const Icon = codeToIcon[weathercode] || Sun
+
   return (
     <div className={styles.container}>
       <div className={styles.info}>
-        <span className={styles.temp}>{temperature}°C</span>
-        <span className={styles.desc}>{description}</span>
+        {/* Aktuelles Wetter-Icon */}
+        <Icon size={100} className={styles.icon} />
+
+        <div>
+          <span className={styles.temp}>{temperature}°C</span>
+          <span className={styles.desc}>{description}</span>
+        </div>
       </div>
 
       <div className={styles.forecast}>
-        {forecast.map((day) => (
-          <div key={day.date} className={styles.day}>
-            <span className={styles.dayLabel}>
-              {new Date(day.date).toLocaleDateString('de-DE', { weekday: 'short' })}
-            </span>
-            {/* Hier später dein custom Image via day.weathercode */}
-            <span className={styles.tempSmall}>
-              {day.temp_max}° / {day.temp_min}°
-            </span>
-          </div>
-        ))}
+        {forecast.map((day) => {
+          const DayIcon = codeToIcon[day.weathercode] || Sun
+          return (
+            <div key={day.date} className={styles.day}>
+              <span className={styles.dayLabel}>
+                {new Date(day.date).toLocaleDateString('de-DE', { weekday: 'short' })}
+              </span>
+              <DayIcon size={32} className={styles.iconSmall} />
+              <span className={styles.tempSmall}>
+                {day.temp_max}° / {day.temp_min}°
+              </span>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
