@@ -23,7 +23,6 @@
   --radius-lg: 12px;
 }
 
-/* Beispiel für Dark-Theme Override */
 [data-theme='dark'] {
   --color-primary: #4dabf5;
   --color-secondary: #ffc107;
@@ -49,4 +48,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: var(--color-text-primary);
 }

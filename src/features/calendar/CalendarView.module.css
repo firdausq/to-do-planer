@@ -41,6 +41,7 @@
   align-items: center;
   padding: var(--spacing-sm) 0;
   border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
 }
 
 .deleteButton {
@@ -73,6 +74,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-md);
+  color: var(--color-text-primary);
 }
 
 .header button {
@@ -114,6 +116,7 @@
   padding: var(--spacing-sm);
   margin: auto;
   font-weight: 600;
+  color: var(--color-text-primary);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -127,6 +130,6 @@
 }
 
 .dateToday {
-  background-color: #e0e0e0;   /* Grau als Hintergrund für „heute“ */
-  color: var(--color-text-primary);
+  background-color: #e0e0e0;
+  color: var(--color-text-secondary);
 }

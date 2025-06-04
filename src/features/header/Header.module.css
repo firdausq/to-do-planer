@@ -36,7 +36,7 @@
   padding: var(--spacing-sm);
   margin-left: var(--spacing-sm);
   cursor: pointer;
-  color: currentColor;
+  color: var(--color-text-primary);
 }
 
 .themeToggle {
