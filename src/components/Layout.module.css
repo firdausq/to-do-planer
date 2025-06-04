@@ -44,3 +44,68 @@
   /* Damit sich .rightStack auf die volle Höhe der 1fr-Zeile dehnt */
   flex: 1;
 }
+
+
+/* --------------------------------------- */
+/*  MOBILE (smaller than 576px)            */
+/* --------------------------------------- */
+@media (max-width: 576px), (max-width: 1000px) {
+
+  .page {
+    padding: 1rem;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-auto-rows: auto;
+    grid-gap: var(--spacing-md);
+
+    grid-template-areas:
+      "mood   mood"
+      "note   weather"
+      "calendar calendar"
+      "rightColumn rightColumn"
+    ;
+  }
+
+  .main > [style*="grid-area: mood"] {
+    grid-area: mood;
+    width: 100%;
+  }
+
+  .main > [style*="grid-area: note"] {
+    grid-area: note;
+    width: 100%;
+  }
+
+  .main > [style*="grid-area: weather"] {
+    grid-area: weather;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .main > [style*="grid-area: calendar"] {
+    grid-area: calendar;
+    width: 100%;
+  }
+
+  .main > [style*="grid-area: rightColumn"] {
+    grid-area: rightColumn;
+    width: 100%;
+  }
+
+  .rightStack {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: var(--spacing-md);
+    align-items: stretch;
+
+  }
+}
+
+@media (max-width: 1000px) {
+  
+}

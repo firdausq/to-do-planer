@@ -63,3 +63,23 @@
   filter: brightness(1.1);
   transform: scale(1.05);
 }
+
+
+@media (max-width: 576px) {
+  .title {
+    font-size: var(--font-size-xl);
+  }
+
+  .titleInput {
+    width: 8rem;
+  }
+
+  .iconButton {
+    padding: var(--spacing-xs);
+  }
+
+  .themeToggle {
+    width: 3rem;
+    height: 3rem;
+  }
+}

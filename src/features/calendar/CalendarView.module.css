@@ -104,7 +104,7 @@
 
 .dates {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: var(--spacing-sm);
 }
 
@@ -132,4 +132,21 @@
 .dateToday {
   background-color: #e0e0e0;
   color: var(--color-text-secondary);
+}
+
+@media (max-width: 576px), (max-width: 800px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .events {
+    width: 100%;
+    margin-top: var(--spacing-md);
+  }
 }
