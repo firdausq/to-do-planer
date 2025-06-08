@@ -1,4 +1,3 @@
-// src/features/moodImage/moodSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
@@ -23,7 +22,6 @@ export const fetchMoodImage = createAsyncThunk(
       )
       return data.urls.regular
     } catch (err) {
-      // Fehler-Nachricht extrahieren und als String zurückgeben
       const msg =
         err.response?.data?.errors?.[0] ||
         err.response?.data?.message      ||
@@ -40,7 +38,14 @@ const moodSlice = createSlice({
     isLoading: false,
     error:     null
   },
-  reducers: {},
+  reducers: {
+    // setzen wir später aus dem localStorage
+    setMoodImageUrl(state, action) {
+      state.url       = action.payload
+      state.isLoading = false
+      state.error     = null
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMoodImage.pending, (state) => {
@@ -58,4 +63,5 @@ const moodSlice = createSlice({
   }
 })
 
+export const { setMoodImageUrl } = moodSlice.actions
 export default moodSlice.reducer

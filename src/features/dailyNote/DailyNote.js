@@ -36,13 +36,13 @@ export default function DailyNote() {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>Meine tägliche Notiz</h3>
+      <h3 className={styles.title}>Spruch des Tages</h3>
       <textarea
         ref={textareaRef}
         className={styles.textarea}
         value={value}
         onChange={onChange}
-        placeholder="Schreibe hier deine Notiz…"
+        placeholder="Schreibe hier einen Spruch oder eine Notiz für den Tag…"
       />
       <div className={styles.counter}>
         {value.length} / {MAX_LEN}
