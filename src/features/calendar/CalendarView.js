@@ -1,5 +1,5 @@
 // src/features/calendar/CalendarView.js
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSelectedDate, removeEvent } from './calendarSlice'
 import { format } from 'date-fns'
@@ -33,10 +33,16 @@ export default function CalendarView() {
   // Aus Redux holen: selectedDate als String 'yyyy-MM-dd'
   const selectedDateString = useSelector((s) => s.calendar.selectedDate)
   // In Date-Objekt umwandeln
-  const selectedDate = new Date(selectedDateString)
+  const selectedDate = useMemo(
+    () => new Date(selectedDateString),
+    [selectedDateString]
+  )
 
   // Key fürs Events-Lookup
-  const dateKey = format(selectedDate, 'yyyy-MM-dd')
+  const dateKey = useMemo(
+    () => format(selectedDate, 'yyyy-MM-dd'),
+    [selectedDate]
+  )
   const events = useSelector(
     (s) => s.calendar.eventsByDate[dateKey] || []
   )
