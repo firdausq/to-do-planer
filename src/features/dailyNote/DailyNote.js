@@ -1,4 +1,3 @@
-// src/features/dailyNote/DailyNote.js
 import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setNoteForDate } from './dailyNoteSlice'
@@ -13,12 +12,10 @@ export default function DailyNote() {
   const [value, setValue] = useState(saved)
   const textareaRef = useRef(null)
 
-  // wenn sich Datum oder gespeicherte Notiz ändern, lokal mitschreiben
   useEffect(() => {
     setValue(saved)
   }, [saved, dateKey])
 
-  // Auto-Grow: Höhe an ScrollHeight anpassen
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto'

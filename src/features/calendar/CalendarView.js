@@ -1,4 +1,3 @@
-// src/features/calendar/CalendarView.js
 import React, { useState, useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSelectedDate, removeEvent } from './calendarSlice'
@@ -7,7 +6,6 @@ import AddEventForm from './AddEventForm'
 import styles from './CalendarView.module.css'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-// Hilfsfunktion: Vergleicht zwei Date-Objekte nur nach Jahr/Monat/Tag
 function isSameDate(a, b) {
   return (
     a.getFullYear() === b.getFullYear() &&
@@ -16,11 +14,10 @@ function isSameDate(a, b) {
   )
 }
 
-// Hilfsfunktion: Erzeugt Array aller Date-Objekte im Monat [1 .. daysInMonth]
 function getDatesOfMonth(year, month) {
   const dates = []
   const firstDay = new Date(year, month, 1)
-  const lastDay = new Date(year, month + 1, 0) // letzter Tag dieses Monats
+  const lastDay = new Date(year, month + 1, 0)
   for (let d = new Date(firstDay); d <= lastDay; d.setDate(d.getDate() + 1)) {
     dates.push(new Date(d))
   }
@@ -30,15 +27,12 @@ function getDatesOfMonth(year, month) {
 export default function CalendarView() {
   const dispatch = useDispatch()
 
-  // Aus Redux holen: selectedDate als String 'yyyy-MM-dd'
   const selectedDateString = useSelector((s) => s.calendar.selectedDate)
-  // In Date-Objekt umwandeln
   const selectedDate = useMemo(
     () => new Date(selectedDateString),
     [selectedDateString]
   )
 
-  // Key fürs Events-Lookup
   const dateKey = useMemo(
     () => format(selectedDate, 'yyyy-MM-dd'),
     [selectedDate]
@@ -47,10 +41,9 @@ export default function CalendarView() {
     (s) => s.calendar.eventsByDate[dateKey] || []
   )
 
-  // State für aktuell angezeigten Monat + Jahr
   const today = new Date()
   const [year, setYear]   = useState(today.getFullYear())
-  const [month, setMonth] = useState(today.getMonth()) // 0 = Jan, 11 = Dez
+  const [month, setMonth] = useState(today.getMonth())
 
   // 1. Array: alle Tage im aktuellen Monat
   const allDates = getDatesOfMonth(year, month)

@@ -40,18 +40,15 @@
 }
 
 .themeToggle {
-  /* Größe & Form */
   width: 4rem;
   height: 4rem;
   padding: 0;
   border: none;
   border-radius: 50%;
   
-  /* Hintergrund je nach Theme-Variable */
   background-color: var(--color-primary);
-  color: var(--color-button-text); /* Icon-Farbe */
+  color: var(--color-button-text);
 
-  /* Optische Feinheiten */
   display: flex;
   align-items: center;
   justify-content: center;

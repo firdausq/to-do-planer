@@ -50,8 +50,8 @@ export const fetchWeather = createAsyncThunk(
 const weatherSlice = createSlice({
   name: 'weather',
   initialState: {
-    current:   null,   // { temperature, weathercode }
-    forecast:  [],     // Array der nächsten Tage (inkl. heute)
+    current:   null,
+    forecast:  [],
     isLoading: false,
     error:     null
   },

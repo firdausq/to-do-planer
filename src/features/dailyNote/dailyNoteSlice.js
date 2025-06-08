@@ -7,7 +7,6 @@ const dailyNoteSlice = createSlice({
   name: 'dailyNote',
   initialState: {
     notesByDate: {
-      // e.g. '2025-05-24': 'Meine Notiz…'
     }
   },
   reducers: {

@@ -8,7 +8,6 @@ export default function MoodImage() {
   const { url, isLoading, error } = useSelector((state) => state.mood)
 
   useEffect(() => {
-    // Datum im Format "YYYY-MM-DD"
     const today = new Date().toISOString().split('T')[0]
     const cachedDate = localStorage.getItem('moodImageDate')
     const cachedUrl  = localStorage.getItem('moodImageUrl')

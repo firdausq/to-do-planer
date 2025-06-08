@@ -8,7 +8,6 @@ const calendarSlice = createSlice({
   initialState: {
     selectedDate: today(),
     eventsByDate: {
-      // z.B. '2025-05-27': [{ id: 1, time: '14:00', title: 'Termin XY' }, …]
     }
   },
   reducers: {

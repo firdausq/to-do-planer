@@ -12,7 +12,6 @@ export default function Header() {
   const [inputValue, setInputValue] = useState(title)
   const inputRef     = useRef(null)
 
-  // Wenn wir in den Edit-Modus wechseln, das Input fokussen
   useEffect(() => {
     if (isEditing && inputRef.current) {
       inputRef.current.select()
@@ -67,7 +66,6 @@ export default function Header() {
         }}
         aria-label="Theme wechseln"
       >
-        {/* Optional: Icon passend zum aktuellen Theme */}
         {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
       </button>
     </header>

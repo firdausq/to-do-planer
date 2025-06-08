@@ -6,11 +6,11 @@
   margin-bottom: var(--spacing-md);
   display: flex;
   flex-direction: column;
-  align-items: center;  /* zentriert Titel & Counter */
+  align-items: center;
 }
 
 .title {
-  text-align: center;   /* Titel zentriert */
+  text-align: center;
   width: 100%;
   margin-bottom: var(--spacing-sm);
 }
@@ -18,13 +18,13 @@
 .textarea {
   width: 100%;
   max-height: calc(1.5em * 5);
-  background: transparent;  /* kein Hintergrund */
-  border: none;            /* kein Rahmen */
+  background: transparent;
+  border: none;
   border-radius: var(--radius-sm);
   padding: var(--spacing-sm);
   font-size: var(--font-size-base);
   color: var(--color-text-primary);
-  resize: none;             /* keine manuelle Größenänderung */
+  resize: none;
   overflow-y: auto;
   overflow-x: hidden; 
 }

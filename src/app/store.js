@@ -7,7 +7,6 @@ import calendarReducer from '../features/calendar/calendarSlice';
 import todosReducer from '../features/todos/todosSlice';
 import notesReducer from '../features/notes/notesSlice';
 
-// Lege hier erstmal einen „leeren“ Reducer an
 const store = configureStore({
   reducer: { 
     header: headerReducer,

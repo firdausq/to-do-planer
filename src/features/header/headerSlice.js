@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  title: 'Mein Planer',   // Standard-Name
-  theme: 'light',         // 'light' | 'dark' | ggf. weitere
+  title: 'Mein Planer',
+  theme: 'light',
 }
 
 const headerSlice = createSlice({
@@ -13,7 +13,6 @@ const headerSlice = createSlice({
       state.title = action.payload
     },
     cycleTheme(state) {
-      // schlägt Themes im Array aufeinander um
       const themes = ['light', 'dark']
       const idx = themes.indexOf(state.theme)
       state.theme = themes[(idx + 1) % themes.length]

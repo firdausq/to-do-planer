@@ -3,8 +3,6 @@
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   margin-bottom: var(--spacing-md);
-
-  /* Das Panel dehnt sich in der Höhe aus */
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -14,13 +12,13 @@
 .textarea {
   width: 100%;
   max-height: calc(1.5em * 10);
-  background: transparent;  /* kein Hintergrund */
-  border: none;            /* kein Rahmen */
+  background: transparent;
+  border: none;
   border-radius: var(--radius-sm);
   padding: var(--spacing-sm);
   font-size: var(--font-size-base);
   color: var(--color-text-primary);
-  resize: none;             /* keine manuelle Größenänderung */
+  resize: none;
   overflow-y: auto;
   overflow-x: hidden; 
 }
